@@ -186,10 +186,35 @@ Age: {{ object.age }}
 <br />
 <br />
 
-<tabsGroup>
-  <tabsPanel title="first tab">first tab content</tabsPanel>
-  <tabsPanel title="second tab">second tab content</tabsPanel>
-  <tabsPanel title="third tab">third tab content</tabsPanel>
-  <tabsPanel title="Fourth tab">Fourth tab content</tabsPanel>
-  <tabsPanel title="fifth tab">fifth tab content</tabsPanel>
+<tabsGroup [(activeIndex)]="currentIndex">
+  <tabsPanel title="first tab">
+    <ng-template tabContent>
+      first tab content
+      <counter />
+    </ng-template>
+  </tabsPanel>
+  <tabsPanel title="second tab">
+    <ng-template tabContent>
+      second tab content
+      <counter />
+    </ng-template>
+  </tabsPanel>
+  <tabsPanel title="third tab">
+    <ng-template tabContent>
+      third tab content
+      <counter />
+    </ng-template>
+  </tabsPanel>
+  <tabsPanel title="Fourth tab">
+    <ng-template tabContent>
+      Fourth tab content
+      <counter />
+    </ng-template>
+  </tabsPanel>
+  <tabsPanel title="fifth tab">
+    <ng-template tabContent>
+      fifth tab content
+      <counter />
+    </ng-template>
+  </tabsPanel>
 </tabsGroup>

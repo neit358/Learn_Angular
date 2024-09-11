@@ -19,9 +19,7 @@ import { TabsPanelComponent } from './tabs_panel.component';
     </div>
 
     <div class="tab-body" *ngIf="tabPanelList.length; else noTabs">
-      <ng-container
-        [ngTemplateOutlet]="tabPanelList[activeIndex].panelBody"
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="tabPanelList[activeIndex].panelBody"></ng-container>
     </div>
 
     <ng-template #noTabs> No tabs. </ng-template>
@@ -38,7 +36,6 @@ export class TabsGroupComponent {
   };
 
   removeTab = (tab: TabsPanelComponent): void => {
-    console.log(this.activeIndex);
     let position = -1;
 
     this.tabPanelList = this.tabPanelList.filter((tabPanel, index) => {
@@ -48,16 +45,21 @@ export class TabsGroupComponent {
       }
       return true;
     });
-
+    console.log(this.activeIndex);
     if (position === this.activeIndex) {
       this.activeIndexChange.emit(
         position === this.tabPanelList.length ? position - 1 : position
       );
     }
+    if(this.activeIndex >= this.tabPanelList.length) {
+      this.activeIndexChange.emit(
+        this.tabPanelList.length - 1
+      );
+    }
   };
 
   handleClickHeader = (idx: number) => {
-    this.activeIndex = idx;
+    console.log(this.activeIndex);
     this.activeIndexChange.emit(idx);
   }
 }

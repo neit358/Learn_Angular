@@ -1,4 +1,11 @@
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  NgModule,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Examplev2Component } from './examplev2/examplev2.component';
 import { ExampleComponent } from './example/example.component';
@@ -12,7 +19,8 @@ import { ContentProjectionComponent } from './contentProjection/contentProjectio
 import { TabsComponent } from './tabs/tabs.component';
 import { TabsGroupComponent } from './tabs/tabs_group.component';
 import { TabsPanelComponent } from './tabs/tabs_panel.component';
-
+import { CounterComponent } from './counter/counter.component';
+import { TabsContentDirective } from './tabs/tabs_content.directive';
 
 @Component({
   selector: 'app-root',
@@ -31,12 +39,14 @@ import { TabsPanelComponent } from './tabs/tabs_panel.component';
     ContentProjectionComponent,
     TabsComponent,
     TabsGroupComponent,
-    TabsPanelComponent
+    TabsPanelComponent,
+    CounterComponent,
+    TabsContentDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   binding = 'Angular';
 
   title = 'challengeAngularTest';
@@ -96,6 +106,7 @@ export class AppComponent {
         console.log(comps); // Bây giờ nó sẽ console.log ra danh sách các toggle components
       }
     );
+
   }
 
   ngAfterViewInit() {
@@ -114,8 +125,9 @@ export class AppComponent {
 
   navs = ['Active', 'Link 1', 'Link 2'];
 
+  currentIndex: number = 0;
 
-
+  // console.log(mockProductComponent.cartService.calculateTotal());
 }
 
 interface productModel {
@@ -158,7 +170,7 @@ const cartService = new CartService();
 
 const productComponent: ProductComponent = new ProductComponent(cartService);
 
-console.log(productComponent.cartService.calculateTotal());
+// console.log(productComponent.cartService.calculateTotal());
 
 class MockCartService implements ICartService {
   selectedProducts: CartItem[] = [];
@@ -170,9 +182,9 @@ class MockCartService implements ICartService {
     // logic
   }
 }
-// Mục đính tạo này để không dùng cartService để tránh việc dùng dữ liệu chính để test 
+// Mục đính tạo này để không dùng cartService để tránh việc dùng dữ liệu chính để test
 const mockCartService = new MockCartService();
 
-const mockProductComponent: ProductComponent = new ProductComponent(mockCartService);
-
-console.log(mockProductComponent.cartService.calculateTotal());
+const mockProductComponent: ProductComponent = new ProductComponent(
+  mockCartService
+);
