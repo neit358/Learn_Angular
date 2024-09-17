@@ -1,4 +1,4 @@
-{{ binding }}
+<!-- {{ binding }}
 
 <h1>{{ object.name }}</h1>
 <h3>{{ object.age }}</h3>
@@ -12,11 +12,11 @@
 
 <br />
 
-<!-- <app-examplev2 *ngIf="object.age >= 18; else under18"></app-examplev2>
+<app-examplev2 *ngIf="object.age >= 18; else under18"></app-examplev2>
 
 <ng-template #under18>
     <Example></Example>
-</ng-template> -->
+</ng-template>
 
 <app-examplev2 [hidden]="object.age < 18" [name]="object.name"></app-examplev2>
 <Example [hidden]="object.age >= 18" [name]="object.name"></Example>
@@ -71,14 +71,14 @@ Age: {{ object.age }}
 <button (click)="toggleBackGround = !toggleBackGround">toggleBackGround</button>
 <button (click)="toggleBorder = !toggleBorder">toggleBorder</button>
 <br />
-<!-- <div class="box"  [class.yellow_background]="toggleBackGround" [class.red_color]="toggleBorder"></div> -->
+<div class="box"  [class.yellow_background]="toggleBackGround" [class.red_color]="toggleBorder"></div>
 <div
   class="box"
   [class]="{ yellow_background: toggleBackGround, red_color: toggleBorder }"
 ></div>
 <br />
 
-<!-- <div class="box"  [style.backgroundColor]="'red'" [style.borderColor]="'yellow'" [style.borderWidth.px]="'2'"></div> -->
+<div class="box"  [style.backgroundColor]="'red'" [style.borderColor]="'yellow'" [style.borderWidth.px]="'2'"></div>
 <div
   class="box"
   [style]="{
@@ -111,8 +111,8 @@ Age: {{ object.age }}
 
 <br />
 
-<!-- <toggle #toggleComp [(checked)]="checked"></toggle>
-<button #toggleComp (click)="toggleComp.handleToggle()">Toggle me</button> -->
+<toggle #toggleComp [(checked)]="checked"></toggle>
+<button #toggleComp (click)="toggleComp.handleToggle()">Toggle me</button>
 <button (click)="showLast = !showLast">showLast</button>
 <toggle #toggleComps [(checked)]="checked"></toggle>
 <toggle #toggleComps [(checked)]="checked"></toggle>
@@ -133,11 +133,11 @@ Age: {{ object.age }}
   <span>Mình tên là</span>
   <p>Tiến</p>
 </contentProjection>
-<!-- <contentProjection [(checked)]="checked2" >
+<contentProjection [(checked)]="checked2" >
     <h1 class="header">Hello xin chào tất cả các bạn </h1>
     <span>Mình tên là</span>
     <p>Vân Anh</p>
-</contentProjection> -->
+</contentProjection>
 
 <contentProjection [(checked)]="checked2">
   <h1 class="header">Hello xin chào tất cả các bạn</h1>
@@ -175,7 +175,7 @@ Age: {{ object.age }}
   <span class="badge text-bg-secondary">{{ counter }}</span>
 </ng-template>
 
-<!-- Dùng ng-template, ngTemplateOutlet và ngTemplateOutletContext trong trường hợp dùng đi dùng lại giống như Image -->
+Dùng ng-template, ngTemplateOutlet và ngTemplateOutletContext trong trường hợp dùng đi dùng lại giống như Image
 <br />
 <ng-template #linkTemplate let-l="link">
   <h4>{{ l }}</h4>
@@ -218,3 +218,14 @@ Age: {{ object.age }}
     </ng-template>
   </tabsPanel>
 </tabsGroup>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<button (click)="handleClickGetProduct()"> GetData </button> -->
+
+<h1>Hello anh em</h1>
+<router-outlet></router-outlet>

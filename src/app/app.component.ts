@@ -21,6 +21,11 @@ import { TabsGroupComponent } from './tabs/tabs_group.component';
 import { TabsPanelComponent } from './tabs/tabs_panel.component';
 import { CounterComponent } from './counter/counter.component';
 import { TabsContentDirective } from './tabs/tabs_content.directive';
+import { I_Product, ProductService } from './service/product.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { DetailsArticleComponent } from './detailsArticle/detailsArticle.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +47,10 @@ import { TabsContentDirective } from './tabs/tabs_content.directive';
     TabsPanelComponent,
     CounterComponent,
     TabsContentDirective,
+    HttpClientModule,
+    HomeComponent,
+    DetailsArticleComponent,
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -100,6 +109,21 @@ export class AppComponent implements OnInit {
     | undefined;
   @ViewChild('toggleComp') toggleComp: ToggleComponent | undefined;
 
+  constructor(private productService: ProductService) {}
+
+  
+observer = {
+  next: (value: unknown) => {
+    console.log(value);
+  },
+  error: (error: unknown) => {
+    console.log(error);
+  },
+  complete: () => {
+    console.log('complete');
+  },
+};
+
   ngOnInit() {
     this.toggleComps?.changes?.subscribe(
       (comps: QueryList<ToggleComponent>) => {
@@ -107,7 +131,24 @@ export class AppComponent implements OnInit {
       }
     );
 
+    this.productService.data$.subscribe({
+      next: (products: I_Product[]) => {
+        console.log(products);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('complete')
+      }
+    })
+
   }
+
+  handleClickGetProduct () {
+    this.productService.getData();
+  }
+
 
   ngAfterViewInit() {
     this.toggleComps?.changes?.subscribe(
@@ -128,6 +169,8 @@ export class AppComponent implements OnInit {
   currentIndex: number = 0;
 
   // console.log(mockProductComponent.cartService.calculateTotal());
+  
+
 }
 
 interface productModel {
@@ -159,6 +202,10 @@ class CartService implements ICartService {
   addToCart(): void {
     // logic
   }
+
+
+  
+
 }
 
 class ProductComponent {
